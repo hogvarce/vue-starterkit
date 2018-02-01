@@ -21,9 +21,8 @@ export default {
       limit: 10,
     };
   },
-  beforeMount() {
-    const page = this.currentPage;
-    this.getBanners(page);
+  created() {
+    this.fetchBanner();
   },
   computed: {
     ...mapGetters({
@@ -33,7 +32,7 @@ export default {
     currentPage: {
       get: function () {
         const { page } = this.$route.query;
-        return page;
+        return page || 1;
       },
       set: function (page) {
         this.currentPage = page;
@@ -61,9 +60,15 @@ export default {
       getBanners: 'banners/getBanners',
     }),
     clickCallback(page) {
-      this.getBanners(page);
       this.$router.push('?page=' + page);
     },
+    fetchBanner() {
+      const page = this.currentPage;
+      this.getBanners(page);
+    },
+  },
+  watch: {
+    '$route': 'fetchBanner'
   },
   components: {
     'paginate': Paginate
