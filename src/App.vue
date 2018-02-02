@@ -8,13 +8,13 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      msg: 'Hotel`s service'
-    }
+  export default {
+    data () {
+      return {
+        msg: 'Hotel`s service'
+      }
+    },
   }
-}
 </script>
 
 <style scoped lang="stylus">

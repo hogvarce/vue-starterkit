@@ -5,7 +5,8 @@ import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import Store from 'store';
 import VueProgressiveImage from 'vue-progressive-image';
-import App from './App.vue';
+import Auth from 'auth';
+import App from 'App.vue';
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
@@ -15,16 +16,12 @@ Vue.use(VueProgressiveImage, {
   blur: 30,
 });
 
-export const auth = {
-  loggedIn() {
-    return true;
-  }
-};
-
 const router = new VueRouter({
   mode: 'history',
   routes,
 });
+
+export const auth = new Auth();
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {

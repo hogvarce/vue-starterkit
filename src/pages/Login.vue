@@ -19,5 +19,6 @@
           </b-form-group>
         </b-col>
     </b-row>
+    <b-button to="/">Main</b-button>
   </b-container>
 </template>
