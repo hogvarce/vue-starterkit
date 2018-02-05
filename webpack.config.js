@@ -5,6 +5,10 @@ const HappyPack = require('happypack');
 const merge = require('webpack-merge');
 const config = require('./config').dev;
 
+const build = require('./webpack.prod.config');
+
+const TARGET = process.env.npm_lifecycle_event;
+
 const common = {
   entry: [
     'bootstrap/dist/css/bootstrap.css',
@@ -32,7 +36,7 @@ const common = {
         test: /\.css$/,
         use: [
           'vue-style-loader',
-          'css-loader'
+          'css-loader',
         ],
       },
       {
@@ -57,10 +61,10 @@ const common = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?[hash]'
-        }
-      }
-    ]
+          name: '[name].[ext]?[hash]',
+        },
+      },
+    ],
   },
   resolve: {
     modules: [
@@ -68,10 +72,10 @@ const common = {
       'node_modules',
     ],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      vue$: 'vue/dist/vue.esm.js',
     },
-    extensions: ['*', '.js', '.vue', '.json']
-  }
+    extensions: ['*', '.js', '.vue', '.json'],
+  },
 };
 
 const start = {
@@ -117,4 +121,11 @@ const start = {
   ],
 };
 
-module.exports = merge(common, start);
+switch (TARGET) {
+  case 'build': {
+    module.exports = merge(common, build);
+    break;
+  }
+  default:
+    module.exports = merge(common, start);
+}

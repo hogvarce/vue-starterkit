@@ -1,8 +1,8 @@
 module.exports = {
   dev: {
     publicPath: '/',
-    defaultPath: {
-      imgUrl: ':8001',
-    },
+  },
+  build: {
+    publicPath: '/',
   },
 };
