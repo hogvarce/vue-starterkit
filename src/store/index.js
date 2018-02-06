@@ -1,5 +1,3 @@
-import { banners } from 'store/banners';
-
 export default {
   state: {
     count: 0,
@@ -17,7 +15,4 @@ export default {
       state.count++;
     },
   },
-  modules: {
-    banners,
-  }
 };
