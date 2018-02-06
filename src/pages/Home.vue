@@ -1,13 +1,7 @@
 <template>
-  <div>
-    <h2>Home</h2>
-    <b-button to="/about">About</b-button>
-    <div>{{ count }}</div>
-    <b-button @click="logOut">LogOut</b-button>
-    <div>
-      <b-button @click="increment">+</b-button>
-    </div>
-  </div>
+  <b-container class="bv-example-row">
+    <h1>Home</h1>
+  </b-container>
 </template>
 <script>
   import { mapState, mapActions } from 'vuex';
